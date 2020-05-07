@@ -19,3 +19,17 @@ chrome.runtime.onInstalled.addListener(function () {
         }]);
     });
 });
+
+// chrome.tabs.executeScript(null, {file: 'custom.js'});
+
+/* chrome.runtime.onMessage.addListener(
+    function(message, callback) {
+        let msg = `ext ${message} ${callback}`
+        alert(msg)
+        if (message === 'changeColor') {
+            chrome.tabs.executeScript({
+                code: 'document.body.style.backgroundColor="orange"'
+            });
+        } 
+});
+ */

@@ -19,5 +19,11 @@
   "options_ui": {
     "page": "options/options.html",
     "chrome_style": true
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://scryfall.com/*"],
+      "js": ["overlay/overlay.js"]
+    }
+  ]
 }
