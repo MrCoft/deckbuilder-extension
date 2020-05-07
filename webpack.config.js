@@ -5,6 +5,7 @@ const CopyPlugin = require('copy-webpack-plugin');
 const ExtensionReloader = require('webpack-extension-reloader');
 const { VueLoaderPlugin } = require('vue-loader');
 const { version } = require('./package.json');
+const path = require('path');
 
 const config = {
   mode: process.env.NODE_ENV,
@@ -13,7 +14,7 @@ const config = {
     'background': './background.js',
     'popup/popup': './popup/popup.js',
     'options/options': './options/options.js',
-    'overlay/overlay': './overlay/overlay.js',
+    'overlay/mod': './overlay/mod.js',
   },
   output: {
     path: __dirname + '/dist',
@@ -21,6 +22,11 @@ const config = {
   },
   resolve: {
     extensions: ['.js', '.vue'],
+    alias: {
+      '@': path.resolve(__dirname, 'src/'),
+      '@overlay': path.resolve(__dirname, 'src/overlay'),
+      '@components': path.resolve(__dirname, 'src/components'),
+    }
   },
   module: {
     rules: [

@@ -23,7 +23,7 @@
   "content_scripts": [
     {
       "matches": ["https://scryfall.com/*"],
-      "js": ["overlay/overlay.js"]
+      "js": ["overlay/mod.js"]
     }
   ]
 }
