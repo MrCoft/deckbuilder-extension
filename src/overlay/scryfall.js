@@ -1,35 +1,28 @@
-import Vue from 'vue';
-import Overlay from '@components/overlay';
+import { registerOverlay } from '@overlay/mod'
+import { _ } from 'core-js'
 
 
-function findCards() {
-    let rawElements = document.body.getElementsByClassName('card-grid-item')
-    let elements = []
-    for (let element of rawElements) {
+let NAME_PATTERN = /(.+) \((.+)\)/
+
+function getCards() {
+    let els = document.body.getElementsByClassName('card-grid-item')
+    let cards = []
+    for (let el of els) {
         // if (element.classList.contains(''))
-        if (element.getAttribute('aria-hidden'))
+        if (el.getAttribute('aria-hidden'))
             continue
-        elements.push(element)
+        try {
+            var cardEl = el.getElementsByClassName('card')[0]
+        } catch {
+            continue
+        }
+        let title = cardEl.getAttribute('title')
+        let [_, name, set] = title.match(NAME_PATTERN)
+        cards.push({
+            el, name, set,
+        })
     }
-    return elements
+    return cards
 }
 
-function addOverlay(element) {
-    let placeholder = document.createElement('div')
-    element.appendChild(placeholder)
-    new Vue({
-        el: placeholder,
-        render: h => h(Overlay)
-    });
-}
-
-function modifyDOM() {
-    let elements = findCards()
-    for (let element of elements)
-        addOverlay(element)
-}
-
-export function registerOverlay() {
-    // modifyDOM()
-    window.onload = modifyDOM
-}
+registerOverlay({ getCards })
