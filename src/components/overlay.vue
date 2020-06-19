@@ -13,19 +13,41 @@ export default {
     }
   },
   data() {
-    return {};
+    return {
+      msg: "",
+    }
   },
   created() {
     console.log(this.name)
-  }
+  },
+
+  methods: {
+    onClick() {
+      console.log('click')
+      this.msg = '+1 (60)'
+
+      chrome.storage.sync.get('deck', result => {
+        console.log('result')
+      })
+
+      chrome.storage.sync.set({ "yourBody": "myBody" }, function(){
+          //  A data saved callback omg so fancy
+      });
+
+      chrome.storage.sync.get(/* String or Array */["yourBody"], function(items){
+          //  items = [ { "yourBody": "myBody" } ]
+      });
+    },
+  },
 };
 </script>
 
 <template>
-  <div class="deckbuilder-overlay">
+  <div class="deckbuilder-overlay" @click="onClick">
     <i class="fe-home"/>
     <v-icon name="plus"/>
     <p>Hello {{ name }}!</p>
+    <p>{{ msg }}</p>
   </div>
 </template>
 

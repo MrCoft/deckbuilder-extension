@@ -14,7 +14,7 @@ const config = {
     'background': './background.js',
     'popup/popup': './popup/popup.js',
     'options/options': './options/options.js',
-    'overlay/mod': './overlay/mod.js',
+    'overlay/scryfall': './overlay/scryfall.js',
   },
   output: {
     path: __dirname + '/dist',
