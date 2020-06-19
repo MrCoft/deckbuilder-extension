@@ -1,13 +1,11 @@
 {
     "version": "2.0.0",
-    "tasks": [
-        {
-            "label": "Start development server",
-            "type": "shell",
-            "command": "npm run watch:dev",
-            "problemMatcher": [
-                "$node-sass"
-            ]
-        }
-    ]
+    "tasks": [{
+        "label": "Start development server",
+        "type": "shell",
+        "command": "npm run watch:dev",
+        "problemMatcher": [
+            "$node-sass"
+        ]
+    }]
 }
