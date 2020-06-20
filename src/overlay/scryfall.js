@@ -25,7 +25,6 @@ function getCards() {
     return cards;
 }
 
-// chrome.browserAction.setPopup({ popup: 'popup/popup.html' });
 //content-script.js
 chrome.runtime.sendMessage({"message": "activate_icon"});
 registerOverlay({ getCards });

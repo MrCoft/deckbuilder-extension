@@ -9,15 +9,15 @@ const path = require('path');
 
 const config = {
   mode: process.env.NODE_ENV,
-  context: __dirname + '/src',
+  context: path.join(__dirname, '/src'),
   entry: {
     'background': './background.js',
-    'popup/popup': './popup/popup.js',
-    'options/options': './options/options.js',
+    'views/popup/popup': './views/popup/popup.js',
+    'views/options/options': './views/options/options.js',
     'overlay/scryfall': './overlay/scryfall.js',
   },
   output: {
-    path: __dirname + '/dist',
+    path: path.join(__dirname, '/dist'),
     filename: '[name].js',
   },
   resolve: {
@@ -26,6 +26,7 @@ const config = {
       '@': path.resolve(__dirname, 'src/'),
       '@overlay': path.resolve(__dirname, 'src/overlay'),
       '@components': path.resolve(__dirname, 'src/components'),
+      '@store': path.resolve(__dirname, 'src/store'),
     }
   },
   module: {
@@ -82,9 +83,9 @@ const config = {
       filename: '[name].css',
     }),
     new CopyPlugin([
-      { from: 'icons', to: 'icons', ignore: ['icon.xcf'] },
-      { from: 'popup/popup.html', to: 'popup/popup.html', transform: transformHtml },
-      { from: 'options/options.html', to: 'options/options.html', transform: transformHtml },
+      { from: 'assets/icons', to: 'assets/icons', ignore: ['icon.xcf'] },
+      { from: 'views/popup/popup.html', to: 'views/popup/popup.html', transform: transformHtml },
+      { from: 'views/options/options.html', to: 'views/options/options.html', transform: transformHtml },
       {
         from: 'manifest.json',
         to: 'manifest.json',
@@ -93,7 +94,7 @@ const config = {
           jsonContent.version = version;
 
           if (config.mode === 'development') {
-            jsonContent['content_security_policy'] = "script-src 'self' 'unsafe-eval'; object-src 'self'";
+            jsonContent.content_security_policy = "script-src 'self' 'unsafe-eval'; object-src 'self'";
           }
 
           return JSON.stringify(jsonContent, null, 2);
@@ -116,7 +117,7 @@ if (config.mode === 'production') {
 if (process.env.HMR === 'true') {
   config.plugins = (config.plugins || []).concat([
     new ExtensionReloader({
-      manifest: __dirname + '/src/manifest.json',
+      manifest: path.join(__dirname, '/src/manifest.json'),
     }),
   ]);
 }

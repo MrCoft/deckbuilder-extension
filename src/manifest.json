@@ -5,19 +5,19 @@
   "manifest_version": 2,
   "permissions": ["activeTab", "declarativeContent", "storage"],
   "icons": {
-    "48": "icons/icon_48.png",
-    "128": "icons/icon_128.png"
+    "48": "assets/icons/icon_48.png",
+    "128": "assets/icons/icon_128.png"
   },
   "page_action": {
     "default_title": "deck-builder",
-    "default_popup": "popup/popup.html"
+    "default_popup": "views/popup/popup.html"
   },
   "background": {
     "scripts": ["background.js"],
     "persistent": false
   },
   "options_ui": {
-    "page": "options/options.html",
+    "page": "views/options/options.html",
     "chrome_style": true
   },
   "content_scripts": [
