@@ -1,28 +1,31 @@
-import { registerOverlay } from '@overlay/mod'
-import { _ } from 'core-js'
+import { registerOverlay } from '@overlay/mod';
+import { _ } from 'core-js';
 
 
-let NAME_PATTERN = /(.+) \((.+)\)/
+let NAME_PATTERN = /(.+) \((.+)\)/;
 
 function getCards() {
-    let els = document.body.getElementsByClassName('card-grid-item')
-    let cards = []
+    let els = document.body.getElementsByClassName('card-grid-item');
+    let cards = [];
     for (let el of els) {
         // if (element.classList.contains(''))
         if (el.getAttribute('aria-hidden'))
-            continue
+            continue;
         try {
-            var cardEl = el.getElementsByClassName('card')[0]
+            var cardEl = el.getElementsByClassName('card')[0];
         } catch {
-            continue
+            continue;
         }
-        let title = cardEl.getAttribute('title')
-        let [_, name, set] = title.match(NAME_PATTERN)
+        let title = cardEl.getAttribute('title');
+        let [_, name, set] = title.match(NAME_PATTERN);
         cards.push({
             el, name, set,
-        })
+        });
     }
-    return cards
+    return cards;
 }
 
-registerOverlay({ getCards })
+// chrome.browserAction.setPopup({ popup: 'popup/popup.html' });
+//content-script.js
+chrome.runtime.sendMessage({"message": "activate_icon"});
+registerOverlay({ getCards });

@@ -37,5 +37,8 @@ module.exports = {
     'vue/no-unused-components': process.env.PRE_COMMIT ? 'error' : 'warn',
     'vue/no-unused-vars': process.env.PRE_COMMIT ? 'error' : 'warn',
     'no-unreachable': process.env.PRE_COMMIT ? 'error' : 'warn',
+    'semi': ['warn', 'always'],
+    'prefer-const': 'off',
+    'spaced-comment': 'warn',
   }
 }

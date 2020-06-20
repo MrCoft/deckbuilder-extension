@@ -33,3 +33,11 @@ chrome.runtime.onInstalled.addListener(function () {
         } 
 });
  */
+
+// background.js
+chrome.extension.onMessage.addListener(
+    function(request, sender, sendResponse) {
+    if (request.message === "activate_icon") {
+        chrome.pageAction.show(sender.tab.id);
+    }
+});
