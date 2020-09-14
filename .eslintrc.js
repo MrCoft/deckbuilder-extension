@@ -30,7 +30,7 @@ module.exports = {
     'generator-star-spacing': 'off',
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-
+    
     'no-unused-vars': process.env.PRE_COMMIT ? 'error' : 'warn',
     'vue/v-slot-style': ["warn", { atComponent: "v-slot", default: "shorthand", named: "shorthand" }],
     'vue/comma-dangle': 'off',
